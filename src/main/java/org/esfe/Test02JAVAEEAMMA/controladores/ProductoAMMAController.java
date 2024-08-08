@@ -68,7 +68,14 @@ public class ProductoAMMAController {
         redirectAttributes.addFlashAttribute("msg", "Producto actualizado exitosamente!");
         return "redirect:/productosAMMA";
     }
+    @GetMapping("/remove/{id}")
+public String remove(@PathVariable Long id, Model model) {
+    ProductoAMMA producto = productoService.buscarPorId(id);
+    model.addAttribute("producto", producto);
+    return "productos/delete"; 
+}
 
+    
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         productoService.eliminarPorId(id);

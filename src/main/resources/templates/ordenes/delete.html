@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
     <title>Eliminar Orden</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
+
 <body>
+<div layout:fragment="content">
+    <h1>Eliminar Orden</h1>
+    <h3>¿Está seguro que desea eliminar este registro?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">ID</dt>
+            <dd class="col-sm-10" th:text="${orden.id}"></dd>
 
-<div class="container mt-4">
-    <h2>Eliminar Orden</h2>
+            <dt class="col-sm-2">Fecha</dt>
+            <dd class="col-sm-10" th:text="${#temporals.format(orden.fechaAMMA, 'dd/MM/yyyy')}"></dd>
+        </dl>
 
-    <p>¿Estás seguro de que quieres eliminar la orden con ID "<span th:text="${orden.id}"></span>"?</p>
+        <form th:action="@{/ordenesAMMA/delete}" method="post"> 
+            <input type="hidden" name="id" th:value="${orden.id}">
+            <input type="submit" value="Eliminar" class="btn btn-danger"> |
+            <a th:href="@{/ordenesAMMA}" class="btn btn-secondary">Regresar</a> 
+        </form>
 
-    <form th:action="@{/ordenesAMMA/delete/{id}(id=${orden.id})}" method="post">
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a th:href="@{/ordenesAMMA}" class="btn btn-secondary">Cancelar</a>
-    </form>
+    </div>
 </div>
-
 </body>
 </html>

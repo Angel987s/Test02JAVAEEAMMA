@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
     <title>Eliminar Producto</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
+    </head>
+
 <body>
+<div layout:fragment="content">
+    <h1>Eliminar Producto</h1>
+    <h3>¿Está seguro que desea eliminar este registro?</h3>
+    <div>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">ID</dt>
+            <dd class="col-sm-10" th:text="${producto.id}"></dd>
 
-<div class="container mt-4">
-    <h2>Eliminar Producto</h2>
+            <dt class="col-sm-2">Nombre</dt>
+            <dd class="col-sm-10" th:text="${producto.nombreAMMA}"></dd>
+        </dl>
 
-    <p>¿Estás seguro de que quieres eliminar el producto "<span th:text="${producto.nombreAMMA}"></span>"?</p>
+        <form th:action="@{/productosAMMA/delete}" method="post"> 
+            <input type="hidden" name="id" th:value="${producto.id}">
+            <input type="submit" value="Eliminar" class="btn btn-danger"> |
+            <a th:href="@{/productosAMMA}" class="btn btn-secondary">Regresar</a> 
+        </form>
 
-    <form th:action="@{/productosAMMA/delete/{id}(id=${producto.id})}" method="post">
-        <button type="submit" class="btn btn-danger">Eliminar</button>
-        <a th:href="@{/productosAMMA}" class="btn btn-secondary">Cancelar</a>
-    </form>
+    </div>
 </div>
-
 </body>
 </html>

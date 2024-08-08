@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name = "OrdenAMMA")
 public class OrdenAMMA {
@@ -12,6 +14,7 @@ public class OrdenAMMA {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaAMMA;
 
     @OneToMany(mappedBy = "ordenAMMA", cascade = CascadeType.ALL)

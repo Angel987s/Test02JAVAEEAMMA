@@ -3,8 +3,6 @@ package org.esfe.Test02JAVAEEAMMA.controladores;
 import org.esfe.Test02JAVAEEAMMA.modelos.DetalleOrdenAMMA;
 import org.esfe.Test02JAVAEEAMMA.modelos.OrdenAMMA;
 import org.esfe.Test02JAVAEEAMMA.modelos.ProductoAMMA;
-import org.esfe.Test02JAVAEEAMMA.servicios.implementaciones.OrdenAMMAService;
-import org.esfe.Test02JAVAEEAMMA.servicios.implementaciones.ProductoAMMAService;
 import org.esfe.Test02JAVAEEAMMA.servicios.interfaces.IDetalleOrdenAMMAService;
 import org.esfe.Test02JAVAEEAMMA.servicios.interfaces.IOrdenAMMAService;
 import org.esfe.Test02JAVAEEAMMA.servicios.interfaces.IProductoAMMAService;
@@ -93,6 +91,15 @@ public String create(Model model) {
         redirectAttributes.addFlashAttribute("msg", "Detalle de orden actualizado exitosamente!");
         return "redirect:/detallesOrdenAMMA"; 
     }
+
+    @GetMapping("/remove/{id}")
+public String remove(@PathVariable Long id, Model model) {
+    DetalleOrdenAMMA detalleOrden = detalleOrdenService.buscarPorId(id);
+    model.addAttribute("detalleOrden", detalleOrden);
+    return "detallesOrden/delete"; 
+}
+
+
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {

@@ -77,6 +77,14 @@ public String index(Model model, @RequestParam("page") Optional<Integer> page,
         return "redirect:/ordenesAMMA";
     }
 
+    @GetMapping("/remove/{id}")
+public String remove(@PathVariable Long id, Model model) {
+    OrdenAMMA orden = ordenService.buscarPorId(id);
+    model.addAttribute("orden", orden);
+    return "ordenes/delete"; 
+}
+
+
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         ordenService.eliminarPorId(id);
