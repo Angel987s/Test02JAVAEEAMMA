@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Producto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Nuevo Producto</h2>
+
+    <form th:action="@{/productosAMMA/save}" th:object="${producto}" method="post">
+        <div class="form-group">
+            <label for="nombreAMMA">Nombre:</label>
+            <input type="text" class="form-control" id="nombreAMMA" th:field="*{nombreAMMA}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/productosAMMA}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Detalles de Orden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Lista de Detalles de Orden</h2>
+    <a th:href="@{/detallesOrdenAMMA/create}" class="btn btn-primary mb-3">Nuevo Detalle de Orden</a>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Producto</th>
+                <th>Orden</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="detalle : ${detallesOrden}">
+                <td th:text="${detalle.id}"></td>
+                <td th:text="${detalle.cantidadAMMA}"></td>
+                <td th:text="${detalle.precioAMMA}"></td>
+                <td th:text="${detalle.productoAMMA.nombreAMMA}"></td> 
+                <td th:text="${detalle.ordenAMMA.id}"></td> 
+                <td>
+                    <a th:href="@{/detallesOrdenAMMA/details/{id}(id=${detalle.id})}" class="btn btn-info btn-sm">Detalles</a>
+                    <a th:href="@{/detallesOrdenAMMA/edit/{id}(id=${detalle.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/detallesOrdenAMMA/delete/{id}(id=${detalle.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${pageNumbers != null and pageNumbers.size() > 1}">
+        <ul class="pagination">
+            <li th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber == detallesOrden.number + 1} ? 'active'">
+                <a class="page-link" th:href="@{|/detallesOrdenAMMA?page=${pageNumber}|}" th:text="${pageNumber}"></a>
+            </li>
+        </ul>
+    </div>
+
+    <div th:if="${detallesOrden.isEmpty()}">
+        <p>No se encontraron detalles de orden.</p>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Eliminar Orden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Eliminar Orden</h2>
+
+    <p>¿Estás seguro de que quieres eliminar la orden con ID "<span th:text="${orden.id}"></span>"?</p>
+
+    <form th:action="@{/ordenesAMMA/delete/{id}(id=${orden.id})}" method="post">
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a th:href="@{/ordenesAMMA}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

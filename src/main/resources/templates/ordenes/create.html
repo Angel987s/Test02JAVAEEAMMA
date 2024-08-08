@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nueva Orden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Nueva Orden</h2>
+
+    <form th:action="@{/ordenesAMMA/save}" th:object="${orden}" method="post">
+        <div class="form-group">
+            <label for="fechaAMMA">Fecha:</label>
+            <input type="date" class="form-control" id="fechaAMMA" th:field="*{fechaAMMA}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a th:href="@{/ordenesAMMA}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Detalle de Orden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Editar Detalle de Orden</h2>
+
+    <form th:action="@{/detallesOrdenAMMA/update}" th:object="${detalleOrden}" method="post">
+        <input type="hidden" th:field="*{id}"> 
+
+        <div class="form-group">
+            <label for="cantidadAMMA">Cantidad:</label>
+            <input type="number" class="form-control" id="cantidadAMMA" th:field="*{cantidadAMMA}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="precioAMMA">Precio:</label>
+            <input type="number" step="0.01" class="form-control" id="precioAMMA" th:field="*{precioAMMA}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="productoAMMA">Producto:</label>
+            <select class="form-control" id="productoAMMA" th:field="*{productoAMMA}" required>
+                <option th:each="producto : ${productos}" th:value="${producto.id}" th:text="${producto.nombreAMMA}"></option> 
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ordenAMMA">Orden:</label>
+            <select class="form-control" id="ordenAMMA" th:field="*{ordenAMMA}" required>
+                <option th:each="orden : ${ordenes}" th:value="${orden.id}" th:text="${orden.id}"></option> 
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+        <a th:href="@{/detallesOrdenAMMA}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+
+</body>
+</html>

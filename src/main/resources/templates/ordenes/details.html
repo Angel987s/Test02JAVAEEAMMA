@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de la Orden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+    <h2>Detalles de la Orden</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">ID: <span th:text="${orden.id}"></span></p>
+            <p class="card-text">Fecha: <span th:text="${#temporals.format(orden.fechaAMMA, 'dd/MM/yyyy')}"></span></p>
+        </div>
+    </div>
+
+    <a th:href="@{/ordenesAMMA/edit/{id}(id=${orden.id})}" class="btn btn-warning mt-3">Editar</a>
+    <a th:href="@{/ordenesAMMA}" class="btn btn-secondary mt-3">Regresar</a>
+</div>
+
+</body>
+</html>
