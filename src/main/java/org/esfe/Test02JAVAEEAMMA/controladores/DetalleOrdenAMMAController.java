@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping("/detallesOrdenAMMA") 
+@RequestMapping("/detallesOrden") 
 public class DetalleOrdenAMMAController {
 
     @Autowired
@@ -49,7 +49,7 @@ public class DetalleOrdenAMMAController {
     
         return "detallesOrden/index"; 
     }
-    
+  
     @GetMapping("/create")
 public String create(Model model) {
     model.addAttribute("detalleOrden", new DetalleOrdenAMMA());
@@ -69,7 +69,7 @@ public String create(Model model) {
     public String save(@ModelAttribute("detalleOrden") DetalleOrdenAMMA detalleOrden, RedirectAttributes redirectAttributes) {
         detalleOrdenService.crearOEditar(detalleOrden);
         redirectAttributes.addFlashAttribute("msg", "Detalle de orden guardado exitosamente!");
-        return "redirect:/detallesOrdenAMMA"; 
+        return "redirect:/detallesOrden"; 
     }
 
     @GetMapping("/edit/{id}")
@@ -89,7 +89,7 @@ public String create(Model model) {
     public String update(@ModelAttribute("detalleOrden") DetalleOrdenAMMA detalleOrden, RedirectAttributes redirectAttributes) {
         detalleOrdenService.crearOEditar(detalleOrden);
         redirectAttributes.addFlashAttribute("msg", "Detalle de orden actualizado exitosamente!");
-        return "redirect:/detallesOrdenAMMA"; 
+        return "redirect:/detallesOrden"; 
     }
 
     @GetMapping("/remove/{id}")
@@ -101,11 +101,11 @@ public String remove(@PathVariable Long id, Model model) {
 
 
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         detalleOrdenService.eliminarPorId(id);
         redirectAttributes.addFlashAttribute("msg", "Detalle de orden eliminado exitosamente!");
-        return "redirect:/detallesOrdenAMMA"; 
+        return "redirect:/detallesOrden"; 
     }
     
     @GetMapping("/details/{id}")

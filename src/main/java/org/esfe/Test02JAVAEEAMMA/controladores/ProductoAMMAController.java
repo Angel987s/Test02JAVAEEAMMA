@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping("/productosAMMA") 
+@RequestMapping("/productos") 
 public class ProductoAMMAController {
 
     @Autowired
@@ -52,7 +52,7 @@ public class ProductoAMMAController {
     public String save(@ModelAttribute("producto") ProductoAMMA producto, RedirectAttributes redirectAttributes) {
         productoService.crearOEditar(producto);
         redirectAttributes.addFlashAttribute("msg", "Producto guardado exitosamente!");
-        return "redirect:/productosAMMA";
+        return "redirect:/productos";
     }
 
     @GetMapping("/edit/{id}")
@@ -66,7 +66,7 @@ public class ProductoAMMAController {
     public String update(@ModelAttribute("producto") ProductoAMMA producto, RedirectAttributes redirectAttributes) {
         productoService.crearOEditar(producto);
         redirectAttributes.addFlashAttribute("msg", "Producto actualizado exitosamente!");
-        return "redirect:/productosAMMA";
+        return "redirect:/productos";
     }
     @GetMapping("/remove/{id}")
 public String remove(@PathVariable Long id, Model model) {
@@ -76,11 +76,11 @@ public String remove(@PathVariable Long id, Model model) {
 }
 
     
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+@PostMapping("/delete/{id}") 
+public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         productoService.eliminarPorId(id);
         redirectAttributes.addFlashAttribute("msg", "Producto eliminado exitosamente!");
-        return "redirect:/productosAMMA";
+        return "redirect:/productos";
     }
     
     @GetMapping("/details/{id}")

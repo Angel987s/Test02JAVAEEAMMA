@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_mainLayout">
 <head>
     <title>Eliminar Orden</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -19,10 +20,9 @@
             <dd class="col-sm-10" th:text="${#temporals.format(orden.fechaAMMA, 'dd/MM/yyyy')}"></dd>
         </dl>
 
-        <form th:action="@{/ordenesAMMA/delete}" method="post"> 
-            <input type="hidden" name="id" th:value="${orden.id}">
+        <form th:action="@{/ordenes/delete/{id}(id=${orden.id})}" method="post">            <input type="hidden" name="id" th:value="${orden.id}">
             <input type="submit" value="Eliminar" class="btn btn-danger"> |
-            <a th:href="@{/ordenesAMMA}" class="btn btn-secondary">Regresar</a> 
+            <a th:href="@{/ordenes}" class="btn btn-secondary">Regresar</a> 
         </form>
 
     </div>

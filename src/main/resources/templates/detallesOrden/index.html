@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_mainLayout">
+<div layout:fragment="content">
+    <head>
     <meta charset="UTF-8">
     <title>Lista de Detalles de Orden</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -9,7 +10,7 @@
 
 <div class="container mt-4">
     <h2>Lista de Detalles de Orden</h2>
-    <a th:href="@{/detallesOrdenAMMA/create}" class="btn btn-primary mb-3">Nuevo Detalle de Orden</a>
+    <a th:href="@{/detallesOrden/create}" class="btn btn-primary mb-3">Nuevo Detalle de Orden</a>
 
     <table class="table table-striped">
         <thead>
@@ -19,6 +20,7 @@
                 <th>Precio</th>
                 <th>Producto</th>
                 <th>Orden</th>
+                <th>Fecha</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -29,10 +31,11 @@
                 <td th:text="${detalle.precioAMMA}"></td>
                 <td th:text="${detalle.productoAMMA.nombreAMMA}"></td> 
                 <td th:text="${detalle.ordenAMMA.id}"></td> 
+                <td th:text="${detalle.ordenAMMA.fechaAMMA}"></td> 
                 <td>
-                    <a th:href="@{/detallesOrdenAMMA/details/{id}(id=${detalle.id})}" class="btn btn-info btn-sm">Detalles</a>
-                    <a th:href="@{/detallesOrdenAMMA/edit/{id}(id=${detalle.id})}" class="btn btn-warning btn-sm">Editar</a>
-                    <a th:href="@{/detallesOrdenAMMA/remove/{id}(id=${detalle.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a th:href="@{/detallesOrden/details/{id}(id=${detalle.id})}" class="btn btn-info btn-sm">Detalles</a>
+                    <a th:href="@{/detallesOrden/edit/{id}(id=${detalle.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/detallesOrden/remove/{id}(id=${detalle.id})}" class="btn btn-danger btn-sm">Eliminar</a>
                 </td>
             </tr>
         </tbody>
@@ -41,7 +44,7 @@
     <div th:if="${pageNumbers != null and pageNumbers.size() > 1}">
         <ul class="pagination">
             <li th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber == detallesOrden.number + 1} ? 'active'">
-                <a class="page-link" th:href="@{|/detallesOrdenAMMA?page=${pageNumber}|}" th:text="${pageNumber}"></a>
+                <a class="page-link" th:href="@{|/detallesOrden?page=${pageNumber}|}" th:text="${pageNumber}"></a>
             </li>
         </ul>
     </div>

@@ -22,7 +22,7 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping("/ordenesAMMA") 
+@RequestMapping("/ordenes") 
 public class OrdenAMMAController {
 
     @Autowired
@@ -60,7 +60,7 @@ public String index(Model model, @RequestParam("page") Optional<Integer> page,
     public String save(@ModelAttribute("orden") OrdenAMMA orden, RedirectAttributes redirectAttributes) {
         ordenService.crearOEditar(orden);
         redirectAttributes.addFlashAttribute("msg", "Orden guardada exitosamente!");
-        return "redirect:/ordenesAMMA";
+        return "redirect:/ordenes";
     }
 
     @GetMapping("/edit/{id}")
@@ -74,7 +74,7 @@ public String index(Model model, @RequestParam("page") Optional<Integer> page,
     public String update(@ModelAttribute("orden") OrdenAMMA orden, RedirectAttributes redirectAttributes) {
         ordenService.crearOEditar(orden);
         redirectAttributes.addFlashAttribute("msg", "Orden actualizada exitosamente!");
-        return "redirect:/ordenesAMMA";
+        return "redirect:/ordenes";
     }
 
     @GetMapping("/remove/{id}")
@@ -85,11 +85,11 @@ public String remove(@PathVariable Long id, Model model) {
 }
 
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         ordenService.eliminarPorId(id);
         redirectAttributes.addFlashAttribute("msg", "Orden eliminada exitosamente!");
-        return "redirect:/ordenesAMMA";
+        return "redirect:/ordenes";
     }
 
     @GetMapping("/details/{id}")

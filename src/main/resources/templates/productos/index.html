@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_mainLayout">
+<div layout:fragment="content">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Productos</title>
@@ -9,7 +10,7 @@
 
 <div class="container mt-4">
     <h2>Lista de Productos</h2>
-    <a th:href="@{/productosAMMA/create}" class="btn btn-primary mb-3">Nuevo Producto</a>
+    <a th:href="@{/productos/create}" class="btn btn-primary mb-3">Nuevo Producto</a>
 
     <table class="table table-striped">
         <thead>
@@ -24,9 +25,9 @@
                 <td th:text="${producto.id}"></td>
                 <td th:text="${producto.nombreAMMA}"></td>
                 <td>
-                    <a th:href="@{/productosAMMA/details/{id}(id=${producto.id})}" class="btn btn-info btn-sm">Detalles</a>
-                    <a th:href="@{/productosAMMA/edit/{id}(id=${producto.id})}" class="btn btn-warning btn-sm">Editar</a>
-                    <a th:href="@{/productosAMMA/remove/{id}(id=${producto.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a th:href="@{/productos/details/{id}(id=${producto.id})}" class="btn btn-info btn-sm">Detalles</a>
+                    <a th:href="@{/productos/edit/{id}(id=${producto.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/productos/remove/{id}(id=${producto.id})}" class="btn btn-danger btn-sm">Eliminar</a>
                 </td>
             </tr>
         </tbody>
@@ -35,7 +36,7 @@
     <div th:if="${pageNumbers != null and pageNumbers.size() > 1}"> 
         <ul class="pagination">
             <li th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber == productos.number + 1} ? 'active'">
-                <a class="page-link" th:href="@{|/productosAMMA?page=${pageNumber}|}" th:text="${pageNumber}"></a>
+                <a class="page-link" th:href="@{|/productos?page=${pageNumber}|}" th:text="${pageNumber}"></a>
             </li>
         </ul>
     </div>

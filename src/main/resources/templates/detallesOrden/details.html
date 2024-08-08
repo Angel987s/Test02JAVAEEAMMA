@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_mainLayout">
+<div layout:fragment="content"><head>
     <meta charset="UTF-8">
     <title>Detalles del Detalle de Orden</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -16,12 +16,13 @@
             <p class="card-text">Cantidad: <span th:text="${detalleOrden.cantidadAMMA}"></span></p>
             <p class="card-text">Precio: <span th:text="${detalleOrden.precioAMMA}"></span></p>
             <p class="card-text">Producto: <span th:text="${detalleOrden.productoAMMA.nombreAMMA}"></span></p> 
-            <p class="card-text">Orden: <span th:text="${detalleOrden.ordenAMMA.id}"></span></p> 
+            <p class="card-text">Orden: <span th:text="${detalleOrden.ordenAMMA.id}"></span></p>
+            <p class="card-text">Fecha: <span th:text="${detalleOrden.ordenAMMA.fechaAMMA}"></span> </p> 
         </div>
     </div>
 
-    <a th:href="@{/detallesOrdenAMMA/edit/{id}(id=${detalleOrden.id})}" class="btn btn-warning mt-3">Editar</a>
-    <a th:href="@{/detallesOrdenAMMA}" class="btn btn-secondary mt-3">Regresar</a>
+    <a th:href="@{/detallesOrden/edit/{id}(id=${detalleOrden.id})}" class="btn btn-warning mt-3">Editar</a>
+    <a th:href="@{/detallesOrden}" class="btn btn-secondary mt-3">Regresar</a>
 </div>
 
 </body>

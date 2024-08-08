@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_mainLayout">
+<div layout:fragment="content">
+    <head>
     <meta charset="UTF-8">
     <title>Lista de Órdenes</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -9,7 +10,7 @@
 
 <div class="container mt-4">
     <h2>Lista de Órdenes</h2>
-    <a th:href="@{/ordenesAMMA/create}" class="btn btn-primary mb-3">Nueva Orden</a>
+    <a th:href="@{/ordenes/create}" class="btn btn-primary mb-3">Nueva Orden</a>
 
     <table class="table table-striped">
         <thead>
@@ -24,9 +25,9 @@
                 <td th:text="${orden.id}"></td>
                 <td th:text="${#temporals.format(orden.fechaAMMA, 'dd/MM/yyyy')}"></td>
                 <td>
-                    <a th:href="@{/ordenesAMMA/details/{id}(id=${orden.id})}" class="btn btn-info btn-sm">Detalles</a>
-                    <a th:href="@{/ordenesAMMA/edit/{id}(id=${orden.id})}" class="btn btn-warning btn-sm">Editar</a>
-                    <a th:href="@{/ordenesAMMA/remove/{id}(id=${orden.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a th:href="@{/ordenes/details/{id}(id=${orden.id})}" class="btn btn-info btn-sm">Detalles</a>
+                    <a th:href="@{/ordenes/edit/{id}(id=${orden.id})}" class="btn btn-warning btn-sm">Editar</a>
+                    <a th:href="@{/ordenes/remove/{id}(id=${orden.id})}" class="btn btn-danger btn-sm">Eliminar</a>
                 </td>
             </tr>
         </tbody>
@@ -35,7 +36,7 @@
     <div th:if="${pageNumbers != null and pageNumbers.size() > 1}">
         <ul class="pagination">
             <li th:each="pageNumber : ${pageNumbers}" th:classappend="${pageNumber == ordenes.number + 1} ? 'active'">
-                <a class="page-link" th:href="@{|/ordenesAMMA?page=${pageNumber}|}" th:text="${pageNumber}"></a>
+                <a class="page-link" th:href="@{|/ordenes?page=${pageNumber}|}" th:text="${pageNumber}"></a>
             </li>
         </ul>
     </div>

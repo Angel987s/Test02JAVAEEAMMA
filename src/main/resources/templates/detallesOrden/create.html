@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layouts/_mainLayout">
+<div layout:fragment="content"><head>
     <meta charset="UTF-8">
     <title>Nuevo Detalle de Orden</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -10,7 +10,7 @@
 <div class="container mt-4">
     <h2>Nuevo Detalle de Orden</h2>
 
-    <form th:action="@{/detallesOrdenAMMA/save}" th:object="${detalleOrden}" method="post">
+    <form th:action="@{/detallesOrden/save}" th:object="${detalleOrden}" method="post">
         <div class="form-group">
             <label for="cantidadAMMA">Cantidad:</label>
             <input type="number" class="form-control" id="cantidadAMMA" th:field="*{cantidadAMMA}" required>
@@ -36,7 +36,7 @@
         </div>
 
         <button type="submit" class="btn btn-primary">Guardar</button>
-        <a th:href="@{/detallesOrdenAMMA}" class="btn btn-secondary">Cancelar</a>
+        <a th:href="@{/detallesOrden}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 
